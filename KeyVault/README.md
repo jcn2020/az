@@ -247,3 +247,70 @@ word" --value "MySeCREtPassWd*"az keyvault secret set --vault-name "JNMyRgKeyVau
   }
 ]
 ```
+
+#### Get Secret Key 
+* AZ `az keyvault secret show --name MyTopPassword --vault-name JNMyRGKeyVault | jq ".value"`
+```
+[~/workspace/az/KeyVault]:345> az keyvault secret show --name MyTopPassword --vault-name JNMyRGKeyVault
+{
+  "attributes": {
+    "created": "2018-04-30T02:21:03+00:00",
+    "enabled": true,
+    "expires": null,
+    "notBefore": null,
+    "recoveryLevel": "Purgeable",
+    "updated": "2018-04-30T02:21:03+00:00"
+  },
+  "contentType": null,
+  "id": "https://jnmyrgkeyvault.vault.azure.net/secrets/MyTopPassword/b033c1c9049a4a9c824bed732c986735",
+  "kid": null,
+  "managed": null,
+  "tags": {
+    "file-encoding": "utf-8"
+  },
+  "value": "MySeCREtPassWd*"
+}
+```
+* PS `(Get-AzureKeyVaultSecret -VaultName JNMyRGKeyVault -Name MyTopPassword).SecretValueText`
+```
+[~/workspace/az/KeyVault]:345> az keyvault secret show --name MyTopPassword --vault-name JNMyRGKeyVault
+{
+  "attributes": {
+    "created": "2018-04-30T02:21:03+00:00",
+    "enabled": true,
+    "expires": null,
+    "notBefore": null,
+    "recoveryLevel": "Purgeable",
+    "updated": "2018-04-30T02:21:03+00:00"
+  },
+  "contentType": null,
+  "id": "https://jnmyrgkeyvault.vault.azure.net/secrets/MyTopPassword/b033c1c9049a4a9c824bed732c986735",
+  "kid": null,
+  "managed": null,
+  "tags": {
+    "file-encoding": "utf-8"
+  },
+  "value": "MySeCREtPassWd*"
+}
+```
+
+* PS C:\Users\jnguyen> Get-AzureKeyVaultSecret -VaultName JNMyRGKeyVault -Name MyTopPassword
+```
+SecretValue     : System.Security.SecureString
+SecretValueText : MySeCREtPassWd*
+Attributes      : Microsoft.Azure.Commands.KeyVault.Models.PSKeyVaultSecretAttributes
+Enabled         : True
+Expires         :
+NotBefore       :
+Created         : 4/30/2018 2:21:03 AM
+Updated         : 4/30/2018 2:21:03 AM
+ContentType     :
+Tags            : {file-encoding}
+TagsTable       : Name           Value
+                  file-encoding  utf-8
+
+VaultName       : jnmyrgkeyvault
+Name            : MyTopPassword
+Version         : b033c1c9049a4a9c824bed732c986735
+Id              : https://jnmyrgkeyvault.vault.azure.net:443/secrets/MyTopPassword/b033c1c9049a4a9c824bed732c986735
+```
